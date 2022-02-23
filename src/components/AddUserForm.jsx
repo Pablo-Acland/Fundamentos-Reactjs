@@ -18,7 +18,7 @@ const AddUserForm = (props) => {
             {...register('name', {
                 required: true,
             })}
-            placeholder="Ingrese el nombre a editar" 
+            placeholder="Ingrese el nombre" 
             className='form-control my-3'>
         </input>
         {errors.name?.type === 'required' && (
@@ -31,7 +31,7 @@ const AddUserForm = (props) => {
             {...register('username', {
                 required: true,
             })}
-            placeholder="Ingrese el nombre de Usuario a editar" 
+            placeholder="Ingrese el nombre de Usuario" 
             className='form-control my-3'>
             </input>
         {errors.username?.type === 'required' && (
