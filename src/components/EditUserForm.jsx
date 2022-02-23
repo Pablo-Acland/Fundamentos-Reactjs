@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-const EditUserForm = props => {
+const EditUserForm = (props) => {
+    
+    const {register, formState: { errors }, handleSubmit, setValue} = useForm({
+        defaultValues: props.currentUser
 
+    });
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    setValue('name', props.currentUser.name)
+    setValue('username', props.currentUser.username)
 
     const onSubmit = (data, e) => {
-        
-        props.addUser(data)
-        e.target.reset();
-    }
+        data.id = props.currentUser.id
+        console.log(data)
+        props.updateUser(props.currentUser.id, data)
+        e.target.reset()
+    };
+   
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -20,8 +27,8 @@ const EditUserForm = props => {
                 required: true,
             })}
             placeholder="Ingrese el nombre a Editar" 
-            className='form-control my-3'>
-        </input>
+            className='form-control my-3'/>
+        
         {errors.name?.type === 'required' && (
             <span className='text-danger text-small d-block mb-2'>
                 Debe de Ingresar el nombre
@@ -33,8 +40,7 @@ const EditUserForm = props => {
                 required: true,
             })}
             placeholder="Ingrese el nombre de Usuario a Editar" 
-            className='form-control my-3'>
-            </input>
+            className='form-control my-3'/>
         {errors.username?.type === 'required' && (
             <span className='text-danger text-small d-block mb-2'>
                 Debe de Ingresar el nombre del Usuario

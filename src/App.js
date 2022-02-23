@@ -32,9 +32,8 @@ function App() {
 
   const initialFormState = { id: null, name: '', username: '' }
   const [currentUser, setCurrentUser] = useState(initialFormState)
-
   const editRow = user => {
-    setEditing(true) 
+    setEditing(true);
     setCurrentUser({ id: user.id, name: user.name, username: user.username })
   }
 
@@ -52,7 +51,11 @@ function App() {
             editing ?(
             <div>
               <h2>Add user</h2>
-              <EditUserForm addUser={addUser}  />
+              <EditUserForm 
+              setEditing={setEditing}
+              currentUser={currentUser}
+              updateUser={updateUser}
+              />
             </div>
           
           ) : (
